@@ -15,7 +15,7 @@ const images = [
 const gallery = document.getElementById("gallery");
 
 const imageEl = images.map(({ url, alt }) => `<li><img src="${url}" alt="${alt}" width="360px" height="240px"></li>`
-);
+).join('');
 
 gallery.insertAdjacentHTML('afterbegin', imageEl);
 gallery.style.listStyle = 'none';
