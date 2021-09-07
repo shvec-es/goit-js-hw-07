@@ -1,23 +1,39 @@
-// const inputValue = document.querySelector('input');
-// const buttonCreate = document.querySelector('[data-action="render"]');
-// const buttonCleare = document.querySelector('[data-action="destroy"]');
-// const boxesEl = document.querySelector('#boxes');
+const refs = {
+    inputValue: document.querySelector('input'),
+    buttonCreate: document.querySelector('[data-action="render"]'),
+    buttonCleare: document.querySelector('[data-action="destroy"]'),
+    boxesEl: document.querySelector('#boxes'),
+}
 
-// buttonCreate.addEventListener('click', createBoxes(inputValue.value));
-// // buttonCleare.addEventListener('click', destroyBoxes);
+refs.buttonCreate.addEventListener("click", getAmount);
+refs.buttonCleare.addEventListener("click", destroyBoxes);
 
-// function createBoxes(amount) {
-//     const divBoxes = [];
-//     divBoxes.forEach(() => {
-//         divBoxes.length = amount;
-//         const divEl = document.createElement('div');
-//         divEl.style.width = 30;
-//         divEl.style.height = 30;
-//         divEl.style.backgroundColor = `#${Math.random()
-//             .toString(16)
-//             .substring(2, 8)}`;
-//         divBoxes.push(divEl);
-//     boxesEl.innerHTML('divBoxes'); 
-// })
-// }
+function getAmount() {
+    let amount = Number(refs.inputValue.value);
+    createBoxes(amount) ;
+}
+
+const divBoxes = [];
+
+function createBoxes(amount) {
+
+    for (let i = 0; i < amount; i += 1) {
+        let newBox = document.createElement('div');
+        newBox.style.width = `${30 + i * 10}px`;
+        newBox.style.height = `${30 + i * 10}px`;
+        newBox.style.backgroundColor = `#${Math.random()
+            .toString(16)
+            .substring(2, 8)}`;
+        divBoxes.push(newBox);
+     }
+    
+    refs.boxesEl.append(...divBoxes);
+    }
+
+function destroyBoxes() {
+    refs.boxesEl.remove(divBoxes);
+    refs.inputValue.value = '';
+}
+
+
 
